@@ -48,5 +48,11 @@ Models:
 		-getAverage() : hier kunnen we dan een
 		 sessievariabele aan toevoegen.
 		-getAllVakData() : deze haalt gewoon via de andere phpmodellen (Testen, TestPunten) alles op en geeft deze in een volledige array terug.
+
+
+Taakverdeling:
+Models: Niels
+Controllers: Viktor
+View: Anaalex
 		
 
