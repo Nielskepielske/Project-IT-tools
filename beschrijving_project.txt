@@ -1,0 +1,52 @@
+database
+
+tblVak:
+-vakid
+-leerkrachtid
+-vaknaam
+
+
+tblTest:
+-testid
+-vakid
+
+
+tblTestpunten:
+-testid
+-testpunten
+-studentid
+
+
+tblStudent:
+-studentId (rnummer)
+-Naam
+-Wachtwoord
+
+
+pagina's
+
+2 paginas:
+-algemene pagina
+-vakpagina
+
+partialview:
+-detailscherm
+-radar
+-gemiddeldepunten
+
+
+Controllers:
+-PuntenController:
+	-showRadarGraph()
+		-Haalt alle punten op van de model en geeft een associatieve array door aan de view.
+
+
+Models:
+-Vak:
+	-properties:
+	-functies:
+		-getAverage() : hier kunnen we dan een
+		 sessievariabele aan toevoegen.
+		-getAllVakData() : deze haalt gewoon via de andere phpmodellen (Testen, TestPunten) alles op en geeft deze in een volledige array terug.
+		
+
