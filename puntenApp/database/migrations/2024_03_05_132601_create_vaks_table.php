@@ -11,8 +11,30 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vaks', function (Blueprint $table) {
+        Schema::create('vakken', function (Blueprint $table) {
             $table->id();
+            $table->string("leerkracht_id");
+            $table->string('naam');
+            $table->timestamps();
+        });
+        Schema::create('testen', function (Blueprint $table) {
+            $table->id("test_id");
+            $table->foreignId("vak_id");
+            $table->string('naam');
+            $table->string("beschrijving");
+            $table->timestamps();
+        });
+        Schema::create('resultaten', function (Blueprint $table) {
+            $table->foreignId("test_id");
+            $table->foreignId("leerling_id");
+            $table->integer("resultaat");
+            $table->timestamps();
+        });
+        Schema::create('leerlingen', function (Blueprint $table) {
+            $table->id("leerling_id");
+            $table->string("password");
+            $table->string("naam");
+            $table->string("klas");
             $table->timestamps();
         });
     }
@@ -22,6 +44,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vaks');
+        Schema::dropIfExists('vakken');
     }
 };
