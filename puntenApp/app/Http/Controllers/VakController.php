@@ -3,16 +3,38 @@
 namespace App\Http\Controllers;
 
 use App\Models\Vak;
+use App\Models\Test;
+use App\Models\Resultaat;
+use App\Models\User;
 use Illuminate\Http\Request;
+use LDAP\Result;
 
 class VakController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($user)
     {
-        //
+        // $vakken = Vak::all();
+
+        // foreach($vakken as $vak){
+        //     echo $vak->naam;
+        // }
+
+        // $vakken = Vak::all()->load("testen");
+        // $values = $vakken->values;
+        // $vakken->toJson();
+        // $vakken->dump();
+        // print_r($values);
+        // dd($user);
+        // dd(User::find($user));
+        $user = User::find($user);
+        $testen = Resultaat::where("leerling_id", $user->id)->get();
+        dd($testen);
+        $testen->load("test");
+        $testen->load("test.vak");
+        $testen->load("test.vak.testen");
     }
 
     /**

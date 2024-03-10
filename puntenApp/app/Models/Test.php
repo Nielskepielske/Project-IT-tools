@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Testen extends Model
+class Test extends Model
 {
     use HasFactory;
 
@@ -13,6 +13,7 @@ class Testen extends Model
         return $this->belongsTo(Vak::class);
     }
     public function resultaten(){
-        return $this->hasMany(Resultaten::class);
+        return $this->hasMany(Resultaat::class);
     }
+    protected $table = "testen";
 }

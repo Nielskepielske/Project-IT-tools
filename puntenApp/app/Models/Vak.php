@@ -10,6 +10,8 @@ class Vak extends Model
 {
     use HasFactory;
     public function testen():HasMany{
-        return $this->hasMany(Testen::class);
+        return $this->hasMany(Test::class);
     }
+
+    protected $table = 'vakken';
 }
