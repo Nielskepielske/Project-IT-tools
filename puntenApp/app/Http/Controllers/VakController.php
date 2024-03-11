@@ -32,9 +32,6 @@ class VakController extends Controller
         $user = User::find($user);
         $testen = Resultaat::where("leerling_id", $user->id)->get();
         dd($testen);
-        $testen->load("test");
-        $testen->load("test.vak");
-        $testen->load("test.vak.testen");
     }
 
     /**
