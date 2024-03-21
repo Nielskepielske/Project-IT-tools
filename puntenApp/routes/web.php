@@ -33,4 +33,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/radar-chart', [TestController::class, 'radarChart']);
+
 require __DIR__.'/auth.php';
