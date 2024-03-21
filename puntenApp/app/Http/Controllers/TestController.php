@@ -19,15 +19,13 @@ class TestController extends Controller
 
     public function showRadarGraph()
     {
-        // Voorbeeldgegevens, je moet deze variabelen instellen op de juiste waarden
-        $vak = 'Vaknaam';
-        $resultaten = [80, 70, 90, 85, 95]; // Voorbeeldresultaten
+            // Example data
+            $data = [
+                'labels' => ['Wiskunde', 'Fysica', 'Chemie', 'Label 4', 'Label 5'],
+                'data' => [30, 70, 90, 85, 95]
+            ];
+    
+            return view('radar-chart', compact('data'));
 
-        $data = [
-            'labels' => [$vak],
-            'data' => $resultaten,
-        ];
-
-        return view('radar-chart', compact('data'));
     }
 }
