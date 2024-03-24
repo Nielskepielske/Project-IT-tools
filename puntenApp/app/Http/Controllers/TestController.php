@@ -23,7 +23,7 @@ class TestController extends Controller
                 'data' => [30, 70, 90, 85, 95]
             ];
     
-            return view('Main', compact('data'));
+            return view('main', compact('data'));
 
     }
 
