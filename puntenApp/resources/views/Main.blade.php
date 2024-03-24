@@ -15,7 +15,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    @include('partials.radarGraph')
+                    @include('partials.radarGraph',['data'=>$data])
                 </div>
                 <div class="col-md-6">
                     @include('partials.details')

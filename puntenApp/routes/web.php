@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Main',[TestController::class, 'showRadarGraph']);
 });
 
 Route::get('/dashboard', function () {
