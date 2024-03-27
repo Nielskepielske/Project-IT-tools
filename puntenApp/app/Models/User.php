@@ -46,4 +46,7 @@ class User extends Authenticatable
     public function resultaten(){
         return $this->hasMany(Resultaat::class);
     }
+    public function testen(){
+        return $this->hasManyThrough(Test::class, Resultaat::class, 'user_id', 'id', 'id', 'test_id');
+    }
 }

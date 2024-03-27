@@ -13,5 +13,20 @@ class Vak extends Model
         return $this->hasMany(Test::class);
     }
 
+    public function getAverage($userid){
+        $total = 0;
+        $maxtotal = 0;
+        foreach($this->testen as $test){
+            foreach($test->resultaten as $resultaat){
+                if($resultaat->user_id != $userid){
+                    continue;
+                }
+                $total += $resultaat->resultaat;
+                $maxtotal += $resultaat->max_score;
+            }
+        }
+        return $total *100 / $maxtotal;
+    }
+
     protected $table = 'vakken';
 }
