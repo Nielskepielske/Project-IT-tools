@@ -12,8 +12,11 @@ class Resultaat extends Model
     public function testen(){
         return $this->belongsTo(Test::class);
     }
-    public function student(){
-        return $this->belongsTo(student::class);
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    public function vak(){
+        return $this->hasOneThrough(Vak::class, Test::class, 'id', 'id', 'test_id', 'vak_id');
     }
     protected $table = "resultaten";
 }

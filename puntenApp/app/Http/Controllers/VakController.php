@@ -6,7 +6,9 @@ use App\Models\Vak;
 use App\Models\Test;
 use App\Models\Resultaat;
 use App\Models\User;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use LDAP\Result;
 
 class VakController extends Controller
@@ -14,24 +16,40 @@ class VakController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($user)
+    public function index($user = null)
     {
-        // $vakken = Vak::all();
+        $user = Auth::user();
+        // $vakken = $user->testen->each(function($test){
+        //     return $test->vak;
+        // });
 
-        // foreach($vakken as $vak){
-        //     echo $vak->naam;
-        // }
+        $vakken = $user->resultaten->map(function($resultaat){
+            return $resultaat->vak;
+        });
+        // $resultaten = $user->resultaten;
 
-        // $vakken = Vak::all()->load("testen");
-        // $values = $vakken->values;
-        // $vakken->toJson();
-        // $vakken->dump();
-        // print_r($values);
-        // dd($user);
-        // dd(User::find($user));
-        $user = User::find($user);
-        $testen = Resultaat::where("leerling_id", $user->id)->get();
-        dd($testen);
+        // $labels = $vakken->map(function($vak){
+        //     $vak->naam = $vak->naam;
+        //     $vak->average = $vak->getAverage();
+        // });
+        
+        $vakken = $vakken->unique();
+        $vakken = $vakken->each(function($vak) use ($user){
+            $vak->naam = $vak->naam;
+            $vak->average = $vak->getAverage($user->id);
+        });
+
+        $labels = $vakken->pluck('naam');
+        $results = $vakken->pluck('average');
+        $ids = $vakken->pluck('id');
+
+
+        $data = [
+            'labels' => $labels,
+            'data' => $results,
+            "ids" => $ids
+        ];
+        return view('radar-chart', compact('data'));
     }
 
     /**
