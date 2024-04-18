@@ -1,3 +1,11 @@
+<style>
+    #radarChart {
+        display: black;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -9,7 +17,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <canvas id="radarChart"></canvas>
+                    <canvas id="radarChart" style="width: 700px; height: 700px;"></canvas> <!-- Hier kun je de breedte en hoogte van de canvas aanpassen -->
                 </div>
             </div>
         </div>
@@ -36,22 +44,30 @@
                     location.replace("{{ route('test.show') }}?naam="+label);
                 },
                 maintainAspectRatio: false,
-                aspectRatio: 1, // Dit zorgt ervoor dat de grafiek een vierkant is
-                responsive: true,
-                
+                aspectRatio: 1,
+                responsive: false, // Hier stel je responsive op false in, zodat de grootte niet wordt aangepast aan de container
                 scales: {
                     r: {
-                        // Pas andere opties aan 
                         angleLines: {
-                display: false
-            },
-            suggestedMin: 0,
-            suggestedMax: 100
+                            display: true
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        stepSize: 10,
+                        pointLabels: {
+                            font: {
+                                size: 16 // Vergroot de lettergrootte voor betere zichtbaarheid
+                            }
+                        },
+                        grid: {
+                            lineWidth: 2, // Vergroot de lijndikte voor betere zichtbaarheid
+                            circular: true // Maak de radarlijnen cirkelvormig
+                        }
                     }
+                    }
+                
                 }
-            }
-        });
+            });
         console.log(radarChart);
     </script>
 </x-app-layout>
-
