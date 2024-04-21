@@ -39,6 +39,6 @@ class TestController extends Controller
             'data' => $data
         ];
 
-        return view('radar-chart', compact('data'));
+        return view('test-radar-chart', compact('data'));
     }
 }
