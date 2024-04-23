@@ -36,6 +36,7 @@
             },
             options: {
                 onClick: function (evt) {
+                    if(data.clickable == 0) return;
                     var activePoints = radarChart.getElementsAtEventForMode(evt, 'point', radarChart.options);
                     var firstPoint = activePoints[0];
                     var label = radarChart.data.labels[firstPoint.index];

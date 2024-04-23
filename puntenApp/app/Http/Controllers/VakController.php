@@ -47,7 +47,8 @@ class VakController extends Controller
         $data = [
             'labels' => $labels,
             'data' => $results,
-            "ids" => $ids
+            "ids" => $ids,
+            "clickable" => 1
         ];
         return view('radar-chart', compact('data'));
     }
