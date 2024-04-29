@@ -18,6 +18,11 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <canvas id="radarChart" style="width: 700px; height: 700px;"></canvas> <!-- Hier kun je de breedte en hoogte van de canvas aanpassen -->
+
+                    <!--Blade conditional directive om return-knop te tonen enkel wanneer van toepassing-->
+                    @if($data['clickable']==0) 
+                       <button><a href="/vakken">Ga terug naar Vakken</button>
+                    @endif
                 </div>
             </div>
         </div>
@@ -71,4 +76,12 @@
             });
         console.log(radarChart);
     </script>
+    <!--Blade conditional directive om return-knop eventlistener toe te voegen alleen wanneer van toepassing
+    @if($data['clickable']==0) 
+        <script>         
+            document.getElementById("returnButton").addEventListener("returnToVakken", function() {
+                location.replace("{{ route('vak.show') }}");
+            });
+        </script>
+    @endif-->
 </x-app-layout>
