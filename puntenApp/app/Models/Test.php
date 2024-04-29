@@ -9,12 +9,21 @@ class Test extends Model
 {
     use HasFactory;
 
+    /**
+     * ophalen van het vak van de test
+     */
     public function vak(){
         return $this->belongsTo(Vak::class);
     }
+    /**
+     * ophalen van de resultaten van de test
+     */
     public function resultaten(){
         return $this->hasMany(Resultaat::class);
     }
+    /**
+     * ophalen van de gemiddelde score van de test
+     */
     public function getAverage($userid){
         $total = 0;
         $maxtotal = 0;

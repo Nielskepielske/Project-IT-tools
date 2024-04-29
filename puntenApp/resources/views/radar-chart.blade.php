@@ -28,10 +28,10 @@
         var radarChart = new Chart(ctx, {
             type: 'radar',
             data: {
-                labels: {!! json_encode($data['labels']) !!},
+                labels: {!! json_encode($data['labels']); !!},
                 datasets: [{
                     label: 'punten: ',
-                    data: {!! json_encode($data['data']) !!},
+                    data: {!! json_encode($data['data']); !!},
                 }]
             },
             options: {

@@ -9,10 +9,17 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Vak extends Model
 {
     use HasFactory;
+
+    /**
+     * ophalen van de testen van het vak
+     */
     public function testen():HasMany{
         return $this->hasMany(Test::class);
     }
 
+    /**
+     * ophalen van de gemiddelde score van een vak voor een bepaalde gebruiker
+     */
     public function getAverage($userid){
         $total = 0;
         $maxtotal = 0;

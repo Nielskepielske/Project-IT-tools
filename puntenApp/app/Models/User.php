@@ -43,10 +43,16 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    /**
+     * ophalen van de resultaten van de gebruiker
+     */
     public function resultaten(){
         return $this->hasMany(Resultaat::class);
     }
+    /**
+     * ophalen van de testen van de gebruiker
+     */
     public function testen(){
-        return $this->hasManyThrough(Test::class, Resultaat::class, 'user_id', 'id', 'id', 'test_id');
+        return $this->hasManyThrough(Test::class, Resultaat::class, 'user_id', 'id', 'id', 'test_id'); //hasManyThrough : (model, tussenmodel, foreign key van huidig model, foreign key van tussenmodel, primary key van huidig model, primary key van model)
     }
 }

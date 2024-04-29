@@ -18,86 +18,33 @@ class VakController extends Controller
      */
     public function index($user = null)
     {
+        //ophalen van de ingelogde gebruiker
         $user = Auth::user();
-        // $vakken = $user->testen->each(function($test){
-        //     return $test->vak;
-        // });
 
+        //ophalen van de vakken van de ingelogde gebruiker
         $vakken = $user->resultaten->map(function($resultaat){
             return $resultaat->vak;
         });
-        // $resultaten = $user->resultaten;
-
-        // $labels = $vakken->map(function($vak){
-        //     $vak->naam = $vak->naam;
-        //     $vak->average = $vak->getAverage();
-        // });
         
+        //omvormen van de vakken naar een unieke collectie
         $vakken = $vakken->unique();
         $vakken = $vakken->each(function($vak) use ($user){
             $vak->naam = $vak->naam;
             $vak->average = $vak->getAverage($user->id);
         });
 
+        //labels en data voor de grafiek
         $labels = $vakken->pluck('naam');
         $results = $vakken->pluck('average');
-        $ids = $vakken->pluck('id');
 
 
         $data = [
             'labels' => $labels,
             'data' => $results,
-            "ids" => $ids,
             "clickable" => 1
         ];
+
+        //De view radar-chart.blade.php wordt opgeroepen en de data wordt meegegeven
         return view('radar-chart', compact('data'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Vak $vak)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Vak $vak)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Vak $vak)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Vak $vak)
-    {
-        //
     }
 }
