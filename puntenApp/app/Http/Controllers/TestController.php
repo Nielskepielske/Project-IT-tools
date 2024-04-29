@@ -36,8 +36,8 @@ class TestController extends Controller
         $data = $testen->pluck('average');
         $data = [
             'labels' => $labels,
-            'data' => $data
-            'clickable' => 0,
+            'data' => $data,
+            'clickable' => 0
         ];
 
         return view('radar-chart', compact('data'));
