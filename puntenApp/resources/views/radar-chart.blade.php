@@ -36,13 +36,14 @@
             },
             options: {
                 onClick: function (evt) {
-                    if(data.clickable == 0) return;
-                    var activePoints = radarChart.getElementsAtEventForMode(evt, 'point', radarChart.options);
-                    var firstPoint = activePoints[0];
-                    var label = radarChart.data.labels[firstPoint.index];
-                    var value = radarChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index];
-                    console.log(label + ": " + value);
-                    location.replace("{{ route('test.show') }}?naam="+label);
+                    if({!! json_encode($data['clickable']) !!} == 1) {
+                        var activePoints = radarChart.getElementsAtEventForMode(evt, 'point', radarChart.options);
+                        var firstPoint = activePoints[0];
+                        var label = radarChart.data.labels[firstPoint.index];
+                        var value = radarChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index];
+                        console.log(label + ": " + value);
+                        location.replace("{{ route('test.show') }}?naam="+label);
+                    }
                 },
                 maintainAspectRatio: false,
                 aspectRatio: 1,

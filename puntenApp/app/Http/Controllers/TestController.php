@@ -36,7 +36,7 @@ class TestController extends Controller
         $data = $testen->pluck('average');
         $data = [
             'labels' => $labels,
-            'data' => $data
+            'data' => $data,
             'clickable' => 0,
         ];
 
