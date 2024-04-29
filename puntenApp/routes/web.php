@@ -27,7 +27,8 @@ Route::get('/dashboard', function () {
 // Route::get('/vakken/{user}', [VakController::class, 'index'])->name('vak.show');
 Route::get('/vakken', [VakController::class, 'index'])->name('vak.show');
 Route::get('/testen', [TestController::class, 'showRadarGraph'])->name('test.show');
-// Route::get('/testen', [TestController::class, 'index']);
+
+// Route::get('/radar-chart', [TestController::class, 'showRadarGraph']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -35,6 +36,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/radar-chart', [TestController::class, 'showRadarGraph']);
+
 
 require __DIR__.'/auth.php';

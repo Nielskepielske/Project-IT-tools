@@ -37,7 +37,7 @@ class TestController extends Controller
         $data = [
             'labels' => $labels,
             'data' => $data,
-            'clickable' => 0,
+            'clickable' => 0
         ];
 
         return view('radar-chart', compact('data'));
